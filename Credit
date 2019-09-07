@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cstdint>
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+    const int STARTING_BALANCE = 500;
+    int balance = STARTING_BALANCE;
+    int amt;    // of next transaction
+    string desc; // description of transaction
+    int numCredits, numDebits;
+    int creditSum, debitTotal;
+    
+    cout << "Reads in a list of bank transactions and outputs summary information"
+    << endl << endl;
+    
+    cout << "Enter the amount of the next transaction (in $US), then the transaction description" << endl;
+    cin >> amt;
+    while (balance > 0) {
+        numCredits = numDebits = creditSum = debitTotal = 0;
+        if (amt > 0) {
+           numCredits = numCredits + 1;
+            creditSum += amt;
+        }
+        else {
+           numDebits = numDebits + 1;
+           debitTotal -= amt;
+        }
+        balance = amt;
+        getline(cin, desc);
+        cout << desc << " of $" << amt << " leaves balance = $" << balance << endl;
+        
+        cout << "#Credits = " << numCredits << endl;
+        cout << "Total credits = $" << creditSum << endl;
+        cout << "#Debits = " << numDebits << endl;
+        cout << "Total debits = $" << debitTotal << endl;
+        cout << "Final balance = " << balance << endl;
+        cout << endl << "Enter the amount of the next transaction (in $US), then the transaction description" << endl;
+    }
+    
+    
+    return 0;
+}
